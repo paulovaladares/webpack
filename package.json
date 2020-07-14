@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/webpack --colors --progress",
-    "watch": "npm run build -- --watch"
+    "watch": "npm run build -- --watch",
+    "server": "./node_modules/.bin/webpack-dev-server --inline --open"
   },
   "author": "Paulo Valadares <contato@paulovaladares.com.br>",
   "license": "ISC",
