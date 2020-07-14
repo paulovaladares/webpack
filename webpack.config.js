@@ -1,12 +1,14 @@
+const webpack = require("webpack");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const nodeEnv =
+  process.env.NODE_ENV || "production"; /* "production" || "development" */
 const path = require("path");
 
 const config = {
-  mode: "development",
+  mode: nodeEnv,
+  devtool:
+    "source-map" /* "cheap-eval-source-map" || "eval-source-map" || "source-map" */,
   entry: "./src/app.js",
-  output: {
-    path: path.resolve(__dirname, ""),
-    filename: "./src/build.js",
-  },
   module: {
     rules: [
       {
@@ -19,6 +21,20 @@ const config = {
           },
         },
       },
+    ],
+  },
+  output: {
+    path: __dirname + "/dist",
+    publicPath: "/",
+    filename: "bundle.js",
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        extractComments: true,
+        sourceMap: true,
+      }),
     ],
   },
 };
